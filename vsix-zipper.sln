@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{3945DC15-37CF-4E4D-AFBB-6CFF1D4C3A0E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{23E454C1-69E1-4882-AC92-6D03F8EE1D56}"
+	ProjectSection(SolutionItems) = preProject
+		build.proj = build.proj
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{32C20687-45C0-492C-BE19-53D2E709C653}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "content", "content", "{DA13A940-2440-45AC-9307-22919F852155}"
+	ProjectSection(SolutionItems) = preProject
+		content\vsix-zipper.targets = content\vsix-zipper.targets
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{893CEDE0-AD31-4254-8DF1-95B27EE4F107}"
+	ProjectSection(SolutionItems) = preProject
+		tools\Install.ps1 = tools\Install.ps1
+		tools\SlowCheetah.NuGet.template.proj = tools\SlowCheetah.NuGet.template.proj
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DA13A940-2440-45AC-9307-22919F852155} = {3945DC15-37CF-4E4D-AFBB-6CFF1D4C3A0E}
+		{893CEDE0-AD31-4254-8DF1-95B27EE4F107} = {3945DC15-37CF-4E4D-AFBB-6CFF1D4C3A0E}
+	EndGlobalSection
+EndGlobal
