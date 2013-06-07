@@ -20,7 +20,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{32C206
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "content", "content", "{DA13A940-2440-45AC-9307-22919F852155}"
 	ProjectSection(SolutionItems) = preProject
-		content\vsiz-zipper.txt = content\vsiz-zipper.txt
+		content\vsiz-compress.txt = content\vsiz-compress.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{893CEDE0-AD31-4254-8DF1-95B27EE4F107}"

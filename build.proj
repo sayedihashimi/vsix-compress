@@ -30,7 +30,7 @@
     <_NugetSpecFile Include="$(SourceRoot)vsix-compress.nuspec" />
     <ToolsItems Include="$(SourceRoot)tools\**\*" />
     
-    <ContentItems Include="$(SourceRoot)content\vsiz-zipper.txt" />
+    <ContentItems Include="$(SourceRoot)content\**\*" />
     <!--<ToolsItems Include="" />-->
     <!--<ContentItems Include="$(PublishPs1)">
       <DestDir>$(PackageDirectory)\</DestDir>

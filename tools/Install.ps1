@@ -1,7 +1,7 @@
 param($rootPath, $toolsPath, $package, $project)
 
-$importLabel = "VsixZipper"
-$targetsPropertyName = "VsixZipperTargets"
+$importLabel = "VsixCompress"
+$targetsPropertyName = "VsixCompressTargets"
 
 # When this package is installed we need to add a property
 # to the current project, SlowCheetahTargets, which points to the
@@ -123,7 +123,7 @@ function AddImportElementIfNotExists(){
 
         if([string]::Compare($importLabel,$currentLabel.Trim(),$true) -eq 0){
             # found the import no need to continue
-            $foundImport = true
+            $foundImport = $true
             break
         }
 
@@ -146,7 +146,7 @@ function AddImportElementIfNotExists(){
 
     if(!$foundImport){
         # the import is not in the project, add it
-        # <Import Project="$(VsixZipperImport)" Condition="Exists('$(VsizZipperTargets)')" Label="VsixZipper" />
+        # <Import Project="$(VsixCompressImport)" Condition="Exists('$(VsizCompressTargets)')" Label="VsixCompress" />
         $importToAdd = $projectRootElement.AddImport("`$($targetsPropertyName)");
         $importToAdd.Condition = "Exists('`$($targetsPropertyName)')"
         $importToAdd.Label = $importLabel 
@@ -194,8 +194,8 @@ $propertyGroup.Label = $importLabel
 #$propEnableNuGetImport.Condition = ' ''$(SC_EnableImportFromNuGet)''=='''' ';
 
 $importStmt = ('$([System.IO.Path]::GetFullPath( $(MSBuildProjectDirectory)\{0} ))' -f $relPathToTargets)
-$propNuGetImportPath = $propertyGroup.AddProperty('VsixZipperTargets', "$importStmt");
-$propNuGetImportPath.Condition = ' ''$(VsixZipperTargets)''=='''' ';
+$propNuGetImportPath = $propertyGroup.AddProperty('VsixCompressTargets', "$importStmt");
+$propNuGetImportPath.Condition = ' ''$(VsixCompressTargets)''=='''' ';
 
 #$propImport = $propertyGroup.AddProperty('SlowCheetahTargets', '$(SlowCheetah_NuGetImportPath)');
 #$propImport.Condition = ' ''$(SlowCheetah_EnableImportFromNuGet)''==''true'' and Exists(''$(SlowCheetah_NuGetImportPath)'') ';
@@ -219,5 +219,5 @@ $projectMSBuild.Save()
 #    $msg -f $project.Name | Write-Host -ForegroundColor Red
 #}
 
-"    VsixZipperh has been installed into project [{0}]" -f $project.FullName| Write-Host -ForegroundColor DarkGreen
-"    `nFor more info how to enable VsixZipper on build servers see http://sedodream.com/2012/12/24/SlowCheetahBuildServerSupportUpdated.aspx" | Write-Host -ForegroundColor DarkGreen
+"    VsixCompress has been installed into project [{0}]" -f $project.FullName| Write-Host -ForegroundColor DarkGreen
+"    `nFor more info how to enable VsixCompress on build servers see http://sedodream.com/2012/12/24/SlowCheetahBuildServerSupportUpdated.aspx" | Write-Host -ForegroundColor DarkGreen
