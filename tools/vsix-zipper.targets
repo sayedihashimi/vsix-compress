@@ -1,7 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <UseHostCompilerIfAvailable>false</UseHostCompilerIfAvailable>
+    <VZ_TempFolder Condition=" '$(VZ_ExtractIntermediatePath)'=='' ">$(IntermediateOutputPath)VsixZipper</VZ_TempFolder>
+    <VCompress_MSBuildLibPath Condition=" '$(VCompress_MSBuildLibPath)'=='' ">$(MSBuildThisFileDirectory)</VCompress_MSBuildLibPath>
+    <VCompress_MSBuildLibPathLocal Condition=" '$(VCompress_MSBuildLibPathLocal)'=='' ">$(LocalAppData)\Microsoft\MSBuild\VsixCompressor\v1\</VCompress_MSBuildLibPathLocal>
   </PropertyGroup>
   
   <ItemDefinitionGroup>
@@ -14,48 +16,76 @@
     </AppFolderItem>
   </ItemDefinitionGroup>
 
-  <UsingTask AssemblyFile="$(BuildLib)MSBuild.ExtensionPack.dll" TaskName="MSBuild.ExtensionPack.Compression.Zip" />
+  <ItemGroup>
+    <VCompress_SourceMSBuildAssemblies Include="$(VCompress_MSBuildLibPath)*.dll"/>
+  </ItemGroup>
+  
+  <Target Name="CopyMSBuildFilesToLocalAppData" 
+          Inputs="@(VCompress_SourceMSBuildAssemblies)"
+          Outputs="@(VCompress_SourceMSBuildAssemblies->'$(VCompress_MSBuildLibPathLocal)%(FileName)%(Extension)')">
+    <MakeDir Directories="$(VCompress_MSBuildLibPathLocal)"/>
+    <Copy SourceFiles="@(VCompress_SourceMSBuildAssemblies)"
+          DestinationFiles="@(VCompress_SourceMSBuildAssemblies->'$(VCompress_MSBuildLibPathLocal)%(FileName)%(Extension)')"/>
+  </Target>
+  
+  <UsingTask AssemblyFile="$(VCompress_MSBuildLibPathLocal)MSBuild.ExtensionPack.dll" TaskName="MSBuild.ExtensionPack.Compression.Zip" />
 
-  <Target Name="Build">
-    <MakeDir Directories="$(OutputPath)" />
+  <PropertyGroup>
+    <RecompressVsixDependsOn>
+      CopyMSBuildFilesToLocalAppData;
+      CreateVsixContainer;
+      CleanVsixZipperTempFolder;
+      ExtractDefaultVsix;
+      CoreRecompressVsix;
+    </RecompressVsixDependsOn>
+    
+    <ExtractDefaultVsixDependsOn>CopyMSBuildFilesToLocalAppData;CreateVsixContainer</ExtractDefaultVsixDependsOn>
+  </PropertyGroup>
+  <Target Name="RecompressVsix" DependsOnTargets="$(RecompressVsixDependsOn)" AfterTargets="CreateVsixContainer">
+    <Message Text="RecompressVsix" Importance="high"/>
+  </Target>
+  
+  <Target Name="ExtractDefaultVsix" DependsOnTargets="$(ExtractDefaultVsixDependsOn)">
+    <MakeDir Directories="$(VZ_TempFolder)" />
 
+    <Message Text="Extracting .vzix for reextraction, path [$(VZ_TempFolder)]." Importance="high" />
+    <MSBuild.ExtensionPack.Compression.Zip 
+      TaskAction="Extract" 
+      ExtractPath="$(VZ_TempFolder)\extracted\" 
+      ZipFileName="@(_CreatedVsixContainer)"/>    
+  </Target>
+  <Target Name="CoreRecompressVsix">
     <ItemGroup>
-      <_AppCandidateFilesToZip Remove="@(_AppCandidateFilesToZip)" />
-      <_AppCandidateFilesToZip Include="@(Content);@(None)" />
+      <__AppFilesToZip Remove="@(__AppFilesToZip)"/>
+      <_AppFilesToZip Include="$(VZ_TempFolder)\extracted\**\*"/>
     </ItemGroup>
-
-    <FindUnderPath Path="$(AppFolder)" Files="@(_AppCandidateFilesToZip)">
-      <Output TaskParameter="InPath" ItemName="_AppFilesToZip" />
-    </FindUnderPath>
-    <Message Text="App files to zip: @(_AppFilesToZip->'%(RelativeDir)%(Filename)%(Extension)')" />
-
+    
     <PropertyGroup>
-      <_AppFolderFullPath>%(AppFolderItem.FullPath)</_AppFolderFullPath>
+      <_TempVsixFilePath>$(VZ_TempFolder)\$(TargetVsixContainerName)</_TempVsixFilePath>
     </PropertyGroup>
 
-    <Message Text="Creating package .zip at [%(AppFileNameItem.FullPath)]" Importance="high" />
+    <Message Text="Creating new .vsix at [$(_TempVsixFilePath)]" />
+    
     <MSBuild.ExtensionPack.Compression.Zip
       TaskAction="Create"
       CompressFiles="@(_AppFilesToZip)"
-      ZipFileName="%(AppFileNameItem.FullPath)"
-      RemoveRoot="$(_AppFolderFullPath)"
+      ZipFileName="$(_TempVsixFilePath)"
+      RemoveRoot="$(VZ_TempFolder)extracted"
       CompressionLevel="BestCompression" />
+
+    <Message Text="Copying recompressed .vsix to output folder"/>
+    <Copy SourceFiles="$(_TempVsixFilePath)"
+          DestinationFiles="$(TargetVsixContainer)"/>
+  </Target>
+  
+  <Target Name="CleanVsixZipperTempFolder">
+    <Message Text="CleanVsixZipperTempFolder" />
+    <!-- delete the entire VS_TempFolder -->
+    <Message Text="Deleting Vsix Zipper temp folder at [$(VZ_TempFolder)]" />
+    <RemoveDir Directories="$(VZ_TempFolder)" Condition=" '$(VZ_TempFolder)' !='' "/>
   </Target>
 
   <PropertyGroup>
-    <RebuildDependsOn>
-      Clean;
-      Build;
-    </RebuildDependsOn>
-  </PropertyGroup>
-  <Target Name="Rebuild" DependsOnTargets="$(RebuildDependsOn)" />
-  <Target Name="Clean">
-    <!-- delete all the files in the output folder -->
-    <ItemGroup>
-      <_FilesToDelete Remove="@(_FilesToDelete)" />
-      <_FilesToDelete Include="$(OutputPath)**\*" />
-    </ItemGroup>
-    <Message Text="Deleting files: @(_FilesToDelete)" />
-    <Delete Files="@(_FilesToDelete)" />
-  </Target>
+    <CleanDependsOn>$(CleanDependsOn);CleanVsixZipperTempFolder</CleanDependsOn>
+  </PropertyGroup>  
 </Project>

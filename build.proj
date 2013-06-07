@@ -28,10 +28,8 @@
   <ItemGroup>
     <!-- This item should never have more than 1 value -->
     <_NugetSpecFile Include="$(SourceRoot)vsix-zipper.nuspec" />
-    <ToolsItems Include="$(SourceRoot)tools\Install.ps1" />
-
-    <ToolsItems Include="$(SourceRoot)tools\vsix-zipper.targets" />
-
+    <ToolsItems Include="$(SourceRoot)tools\**\*" />
+    
     <ContentItems Include="$(SourceRoot)content\vsiz-zipper.txt" />
     <!--<ToolsItems Include="" />-->
     <!--<ContentItems Include="$(PublishPs1)">

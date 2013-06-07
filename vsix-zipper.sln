@@ -20,13 +20,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{32C206
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "content", "content", "{DA13A940-2440-45AC-9307-22919F852155}"
 	ProjectSection(SolutionItems) = preProject
-		content\vsix-zipper.targets = content\vsix-zipper.targets
+		content\vsiz-zipper.txt = content\vsiz-zipper.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{893CEDE0-AD31-4254-8DF1-95B27EE4F107}"
 	ProjectSection(SolutionItems) = preProject
 		tools\Install.ps1 = tools\Install.ps1
-		tools\SlowCheetah.NuGet.template.proj = tools\SlowCheetah.NuGet.template.proj
+		tools\Ionic.Zip.DLL = tools\Ionic.Zip.DLL
+		tools\MSBuild.ExtensionPack.dll = tools\MSBuild.ExtensionPack.dll
+		tools\vsix-zipper.targets = tools\vsix-zipper.targets
 	EndProjectSection
 EndProject
 Global
