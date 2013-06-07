@@ -1,0 +1,274 @@
+Build started 6/6/2013 6:58:58 PM.
+Environment at start of build:
+ALLUSERSPROFILE = C:\ProgramData
+APPDATA = C:\Users\sayedha\AppData\Roaming
+CLASSPATH = .;C:\Program Files (x86)\QuickTime\QTSystem\QTJava.zip
+CommonProgramFiles = C:\Program Files (x86)\Common Files
+CommonProgramFiles(x86) = C:\Program Files (x86)\Common Files
+CommonProgramW6432 = C:\Program Files\Common Files
+COMPUTERNAME = SAYEDHA-X1
+ComSpec = C:\windows\system32\cmd.exe
+FP_NO_HOST_CHECK = NO
+HOME = C:\Users\sayedha
+HOMEDRIVE = C:
+HOMEPATH = \Users\sayedha
+LOCALAPPDATA = C:\Users\sayedha\AppData\Local
+LOGONSERVER = \\CO2-RED-DC-02
+MOZ_PLUGIN_PATH = C:\Program Files (x86)\Foxit Software\Foxit Reader\plugins\
+MSBuildLoadMicrosoftTargetsReadOnly = true
+MSBUILDLOGTASKINPUTS = 1
+NUMBER_OF_PROCESSORS = 4
+OS = Windows_NT
+Path = C:\Program Files\Common Files\Microsoft Shared\Microsoft Online Services;C:\Program Files (x86)\Common Files\Microsoft Shared\Microsoft Online Services;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Microsoft ASP.NET\ASP.NET Web Pages\v1.0\;C:\Program Files (x86)\Windows Kits\8.0\Windows Performance Toolkit\;C:\Program Files\Microsoft SQL Server\110\Tools\Binn\;C:\Program Files (x86)\Windows Live\Shared;C:\Program Files (x86)\QuickTime\QTSystem\;C:\Program Files\Microsoft\Web Platform Installer\;C:\Program Files\PerforceC:\windows\Microsoft.NET\Framework\v4.0.30319\;C:\Program Files (x86)\Git\bin\;C:\Program Files\Perforce
+PATHEXT = .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.CPL
+PROCESSOR_ARCHITECTURE = x86
+PROCESSOR_ARCHITEW6432 = AMD64
+PROCESSOR_IDENTIFIER = Intel64 Family 6 Model 58 Stepping 9, GenuineIntel
+PROCESSOR_LEVEL = 6
+PROCESSOR_REVISION = 3a09
+ProgramData = C:\ProgramData
+ProgramFiles = C:\Program Files (x86)
+ProgramFiles(x86) = C:\Program Files (x86)
+ProgramW6432 = C:\Program Files
+PROMPT = $P$G
+PSModulePath = C:\Users\sayedha\Documents\WindowsPowerShell\Modules;C:\windows\system32\WindowsPowerShell\v1.0\Modules\
+PUBLIC = C:\Users\Public
+QTJAVA = C:\Program Files (x86)\QuickTime\QTSystem\QTJava.zip
+SESSIONNAME = Console
+SSH_AGENT_PID = 3280
+SSH_AUTH_SOCK = /tmp/ssh-RJZMgj6112/agent.6112
+SystemDrive = C:
+SystemRoot = C:\windows
+SYSTEMTYPE = slate
+TEMP = C:\Users\sayedha\AppData\Local\Temp
+TERM = cygwin
+TMP = C:\Users\sayedha\AppData\Local\Temp
+UATDATA = C:\windows\CCM\UATData\D9F8C395-CAB8-491d-B8AC-179A1FE1BE77
+USERDNSDOMAIN = REDMOND.CORP.MICROSOFT.COM
+USERDOMAIN = REDMOND
+USERDOMAIN_ROAMINGPROFILE = REDMOND
+USERNAME = sayedha
+USERPROFILE = C:\Users\sayedha
+VS100COMNTOOLS = C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\Tools\
+VS110COMNTOOLS = C:\Program Files (x86)\Microsoft Visual Studio 11.0\Common7\Tools\
+VSSDK110Install = C:\Program Files (x86)\Microsoft Visual Studio 11.0\VSSDK\
+windir = C:\windows
+
+Project "C:\Data\personal\mycode\vsix-zipper\build.proj" on node 1 (default targets).
+Initial Properties:
+ALLUSERSPROFILE = C:\ProgramData
+APPDATA = C:\Users\sayedha\AppData\Roaming
+CLASSPATH = .;C:\Program Files (x86)\QuickTime\QTSystem\QTJava.zip
+CommonProgramFiles = C:\Program Files (x86)\Common Files
+CommonProgramW6432 = C:\Program Files\Common Files
+COMPUTERNAME = SAYEDHA-X1
+ComSpec = C:\windows\system32\cmd.exe
+Configuration = Release
+CopyOutputToDevFolder = true
+CreateNugetPackageDependsOn = 
+      CleanAndInitalize;
+      PrepareAndPopulateNugetFolder;
+      CoreCreateNugetPackage;
+    
+DevFolder = c:\temp\msbuild\
+FP_NO_HOST_CHECK = NO
+HOME = C:\Users\sayedha
+HOMEDRIVE = C:
+HOMEPATH = \Users\sayedha
+LOCALAPPDATA = C:\Users\sayedha\AppData\Local
+LOGONSERVER = \\CO2-RED-DC-02
+MOZ_PLUGIN_PATH = C:\Program Files (x86)\Foxit Software\Foxit Reader\plugins\
+MSBuildBinPath = C:\Windows\Microsoft.NET\Framework\v2.0.50727
+MSBuildExtensionsPath = C:\Program Files (x86)\MSBuild
+MSBuildExtensionsPath32 = C:\Program Files (x86)\MSBuild
+MSBuildExtensionsPath64 = C:\Program Files\MSBuild
+MSBuildLoadMicrosoftTargetsReadOnly = true
+MSBUILDLOGTASKINPUTS = 1
+MSBuildNodeCount = 1
+MSBuildProgramFiles32 = C:\Program Files (x86)
+MSBuildProjectDefaultTargets = CreateNugetPackage
+MSBuildProjectDirectory = C:\Data\personal\mycode\vsix-zipper
+MSBuildProjectDirectoryNoRoot = Data\personal\mycode\vsix-zipper
+MSBuildProjectExtension = .proj
+MSBuildProjectFile = build.proj
+MSBuildProjectFullPath = C:\Data\personal\mycode\vsix-zipper\build.proj
+MSBuildProjectName = build
+MSBuildStartupDirectory = C:\Data\personal\mycode\vsix-zipper
+MSBuildToolsPath = C:\Windows\Microsoft.NET\Framework\v2.0.50727
+MSBuildToolsVersion = 2.0
+MSBuildUserExtensionsPath = C:\Users\sayedha\AppData\Local\Microsoft\MSBuild
+NugetExe = C:\Data\personal\mycode\vsix-zipper\.nuget\NuGet.exe
+NugetLocalRepo = C:\Temp\Nuget\LocalRepo\
+NUMBER_OF_PROCESSORS = 4
+OS = Windows_NT
+OutputRoot = C:\Data\personal\mycode\vsix-zipper\OutputRoot\
+OutputRootNoTrailingSlash = C:\Data\personal\mycode\vsix-zipper\OutputRoot
+PackageDirectory = _Package
+PackageRoot = C:\Data\personal\mycode\vsix-zipper\OutputRoot\Nugetpkg\
+Path = C:\Program Files\Common Files\Microsoft Shared\Microsoft Online Services;C:\Program Files (x86)\Common Files\Microsoft Shared\Microsoft Online Services;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Microsoft ASP.NET\ASP.NET Web Pages\v1.0\;C:\Program Files (x86)\Windows Kits\8.0\Windows Performance Toolkit\;C:\Program Files\Microsoft SQL Server\110\Tools\Binn\;C:\Program Files (x86)\Windows Live\Shared;C:\Program Files (x86)\QuickTime\QTSystem\;C:\Program Files\Microsoft\Web Platform Installer\;C:\Program Files\PerforceC:\windows\Microsoft.NET\Framework\v4.0.30319\;C:\Program Files (x86)\Git\bin\;C:\Program Files\Perforce
+PATHEXT = .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.CPL
+PROCESSOR_ARCHITECTURE = x86
+PROCESSOR_ARCHITEW6432 = AMD64
+PROCESSOR_IDENTIFIER = Intel64 Family 6 Model 58 Stepping 9, GenuineIntel
+PROCESSOR_LEVEL = 6
+PROCESSOR_REVISION = 3a09
+ProgramData = C:\ProgramData
+ProgramFiles = C:\Program Files (x86)
+ProgramW6432 = C:\Program Files
+PROMPT = $P$G
+PSModulePath = C:\Users\sayedha\Documents\WindowsPowerShell\Modules;C:\windows\system32\WindowsPowerShell\v1.0\Modules\
+PUBLIC = C:\Users\Public
+QTJAVA = C:\Program Files (x86)\QuickTime\QTSystem\QTJava.zip
+RestorePackages = true
+SESSIONNAME = Console
+SourceRoot = C:\Data\personal\mycode\vsix-zipper\
+SSH_AGENT_PID = 3280
+SSH_AUTH_SOCK = /tmp/ssh-RJZMgj6112/agent.6112
+SystemDrive = C:
+SystemRoot = C:\windows
+SYSTEMTYPE = slate
+TEMP = C:\Users\sayedha\AppData\Local\Temp
+TERM = cygwin
+TMP = C:\Users\sayedha\AppData\Local\Temp
+UATDATA = C:\windows\CCM\UATData\D9F8C395-CAB8-491d-B8AC-179A1FE1BE77
+USERDNSDOMAIN = REDMOND.CORP.MICROSOFT.COM
+USERDOMAIN = REDMOND
+USERDOMAIN_ROAMINGPROFILE = REDMOND
+USERNAME = sayedha
+USERPROFILE = C:\Users\sayedha
+VisualStudioVersion = 11.0
+VS100COMNTOOLS = C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\Tools\
+VS110COMNTOOLS = C:\Program Files (x86)\Microsoft Visual Studio 11.0\Common7\Tools\
+VSSDK110Install = C:\Program Files (x86)\Microsoft Visual Studio 11.0\VSSDK\
+windir = C:\windows
+
+Initial Items:
+_NugetSpecFile
+    C:\Data\personal\mycode\vsix-zipper\vsix-zipper.nuspec
+ContentItems
+    C:\Data\personal\mycode\vsix-zipper\content\vsiz-zipper.txt
+ToolsItems
+    C:\Data\personal\mycode\vsix-zipper\tools\Install.ps1
+    C:\Data\personal\mycode\vsix-zipper\tools\vsix-zipper.targets
+
+Building with tools version "2.0".
+Target "CleanAndInitalize: (TargetId:2)" in project "C:\Data\personal\mycode\vsix-zipper\build.proj" (target "CreateNugetPackage" depends on it):
+Using "MakeDir" task from assembly "Microsoft.Build.Tasks, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+Task "MakeDir" (TaskId:2)
+  Task Parameter:Directories=C:\Data\personal\mycode\vsix-zipper\OutputRoot\ (TaskId:2)
+Done executing task "MakeDir". (TaskId:2)
+Task "MakeDir" (TaskId:3)
+  Task Parameter:Directories=C:\Data\personal\mycode\vsix-zipper\OutputRoot\Nugetpkg\ (TaskId:3)
+Done executing task "MakeDir". (TaskId:3)
+Using "Delete" task from assembly "Microsoft.Build.Tasks, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+Task "Delete" (TaskId:4)
+  Task Parameter:
+      Files=
+          C:\Data\personal\mycode\vsix-zipper\OutputRoot\Nugetpkg\content\vsiz-zipper.txt
+          C:\Data\personal\mycode\vsix-zipper\OutputRoot\Nugetpkg\tools\Install.ps1
+          C:\Data\personal\mycode\vsix-zipper\OutputRoot\Nugetpkg\tools\vsix-zipper.targets
+          C:\Data\personal\mycode\vsix-zipper\OutputRoot\Nugetpkg\vsix-zipper.nuspec
+          C:\Data\personal\mycode\vsix-zipper\OutputRoot\VsixZipper.2.5.6-beta.nupkg (TaskId:4)
+  Deleting file "C:\Data\personal\mycode\vsix-zipper\OutputRoot\Nugetpkg\content\vsiz-zipper.txt". (TaskId:4)
+  Command: (TaskId:4)
+  del "C:\Data\personal\mycode\vsix-zipper\OutputRoot\Nugetpkg\content\vsiz-zipper.txt" (TaskId:4)
+  Deleting file "C:\Data\personal\mycode\vsix-zipper\OutputRoot\Nugetpkg\tools\Install.ps1". (TaskId:4)
+  Command: (TaskId:4)
+  del "C:\Data\personal\mycode\vsix-zipper\OutputRoot\Nugetpkg\tools\Install.ps1" (TaskId:4)
+  Deleting file "C:\Data\personal\mycode\vsix-zipper\OutputRoot\Nugetpkg\tools\vsix-zipper.targets". (TaskId:4)
+  Command: (TaskId:4)
+  del "C:\Data\personal\mycode\vsix-zipper\OutputRoot\Nugetpkg\tools\vsix-zipper.targets" (TaskId:4)
+  Deleting file "C:\Data\personal\mycode\vsix-zipper\OutputRoot\Nugetpkg\vsix-zipper.nuspec". (TaskId:4)
+  Command: (TaskId:4)
+  del "C:\Data\personal\mycode\vsix-zipper\OutputRoot\Nugetpkg\vsix-zipper.nuspec" (TaskId:4)
+  Deleting file "C:\Data\personal\mycode\vsix-zipper\OutputRoot\VsixZipper.2.5.6-beta.nupkg". (TaskId:4)
+  Command: (TaskId:4)
+  del "C:\Data\personal\mycode\vsix-zipper\OutputRoot\VsixZipper.2.5.6-beta.nupkg" (TaskId:4)
+Done executing task "Delete". (TaskId:4)
+Task "Delete" (TaskId:5)
+Done executing task "Delete". (TaskId:5)
+Done building target "CleanAndInitalize" in project "build.proj".: (TargetId:2)
+Target "PrepareAndPopulateNugetFolder: (TargetId:3)" in project "C:\Data\personal\mycode\vsix-zipper\build.proj" (target "CreateNugetPackage" depends on it):
+Using "Copy" task from assembly "Microsoft.Build.Tasks, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+Task "Copy" (TaskId:6)
+  Task Parameter:SourceFiles=C:\Data\personal\mycode\vsix-zipper\vsix-zipper.nuspec (TaskId:6)
+  Task Parameter:DestinationFiles=C:\Data\personal\mycode\vsix-zipper\OutputRoot\Nugetpkg\vsix-zipper.nuspec (TaskId:6)
+  Copying file from "C:\Data\personal\mycode\vsix-zipper\vsix-zipper.nuspec" to "C:\Data\personal\mycode\vsix-zipper\OutputRoot\Nugetpkg\vsix-zipper.nuspec". (TaskId:6)
+  Command: (TaskId:6)
+  copy /y "C:\Data\personal\mycode\vsix-zipper\vsix-zipper.nuspec" "C:\Data\personal\mycode\vsix-zipper\OutputRoot\Nugetpkg\vsix-zipper.nuspec" (TaskId:6)
+Done executing task "Copy". (TaskId:6)
+Task "Copy" (TaskId:7)
+  Task Parameter:
+      SourceFiles=
+          C:\Data\personal\mycode\vsix-zipper\tools\Install.ps1
+          C:\Data\personal\mycode\vsix-zipper\tools\vsix-zipper.targets (TaskId:7)
+  Task Parameter:
+      DestinationFiles=
+          C:\Data\personal\mycode\vsix-zipper\OutputRoot\Nugetpkg\tools\Install.ps1
+          C:\Data\personal\mycode\vsix-zipper\OutputRoot\Nugetpkg\tools\vsix-zipper.targets (TaskId:7)
+  Copying file from "C:\Data\personal\mycode\vsix-zipper\tools\Install.ps1" to "C:\Data\personal\mycode\vsix-zipper\OutputRoot\Nugetpkg\tools\Install.ps1". (TaskId:7)
+  Command: (TaskId:7)
+  copy /y "C:\Data\personal\mycode\vsix-zipper\tools\Install.ps1" "C:\Data\personal\mycode\vsix-zipper\OutputRoot\Nugetpkg\tools\Install.ps1" (TaskId:7)
+  Copying file from "C:\Data\personal\mycode\vsix-zipper\tools\vsix-zipper.targets" to "C:\Data\personal\mycode\vsix-zipper\OutputRoot\Nugetpkg\tools\vsix-zipper.targets". (TaskId:7)
+  Command: (TaskId:7)
+  copy /y "C:\Data\personal\mycode\vsix-zipper\tools\vsix-zipper.targets" "C:\Data\personal\mycode\vsix-zipper\OutputRoot\Nugetpkg\tools\vsix-zipper.targets" (TaskId:7)
+Done executing task "Copy". (TaskId:7)
+Task "Copy" (TaskId:8)
+  Task Parameter:SourceFiles=C:\Data\personal\mycode\vsix-zipper\content\vsiz-zipper.txt (TaskId:8)
+  Task Parameter:DestinationFiles=C:\Data\personal\mycode\vsix-zipper\OutputRoot\Nugetpkg\content\vsiz-zipper.txt (TaskId:8)
+  Copying file from "C:\Data\personal\mycode\vsix-zipper\content\vsiz-zipper.txt" to "C:\Data\personal\mycode\vsix-zipper\OutputRoot\Nugetpkg\content\vsiz-zipper.txt". (TaskId:8)
+  Command: (TaskId:8)
+  copy /y "C:\Data\personal\mycode\vsix-zipper\content\vsiz-zipper.txt" "C:\Data\personal\mycode\vsix-zipper\OutputRoot\Nugetpkg\content\vsiz-zipper.txt" (TaskId:8)
+Done executing task "Copy". (TaskId:8)
+Task "Copy" (TaskId:9)
+Done executing task "Copy". (TaskId:9)
+Done building target "PrepareAndPopulateNugetFolder" in project "build.proj".: (TargetId:3)
+Target "CoreCreateNugetPackage: (TargetId:4)" in project "C:\Data\personal\mycode\vsix-zipper\build.proj" (target "CreateNugetPackage" depends on it):
+Using "Message" task from assembly "Microsoft.Build.Tasks, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+Task "Message" (TaskId:10)
+  Task Parameter:Text=_Cmd: "C:\Data\personal\mycode\vsix-zipper\.nuget\NuGet.exe" pack "C:\Data\personal\mycode\vsix-zipper\OutputRoot\Nugetpkg\vsix-zipper.nuspec" -NoPackageAnalysis -OutputDirectory "C:\Data\personal\mycode\vsix-zipper\OutputRoot"  (TaskId:10)
+  Task Parameter:Importance=low (TaskId:10)
+  _Cmd: "C:\Data\personal\mycode\vsix-zipper\.nuget\NuGet.exe" pack "C:\Data\personal\mycode\vsix-zipper\OutputRoot\Nugetpkg\vsix-zipper.nuspec" -NoPackageAnalysis -OutputDirectory "C:\Data\personal\mycode\vsix-zipper\OutputRoot"  (TaskId:10)
+Done executing task "Message". (TaskId:10)
+Using "Exec" task from assembly "Microsoft.Build.Tasks, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+Task "Exec" (TaskId:11)
+  Task Parameter:Command="C:\Data\personal\mycode\vsix-zipper\.nuget\NuGet.exe" pack "C:\Data\personal\mycode\vsix-zipper\OutputRoot\Nugetpkg\vsix-zipper.nuspec" -NoPackageAnalysis -OutputDirectory "C:\Data\personal\mycode\vsix-zipper\OutputRoot"  (TaskId:11)
+  Command: (TaskId:11)
+  "C:\Data\personal\mycode\vsix-zipper\.nuget\NuGet.exe" pack "C:\Data\personal\mycode\vsix-zipper\OutputRoot\Nugetpkg\vsix-zipper.nuspec" -NoPackageAnalysis -OutputDirectory "C:\Data\personal\mycode\vsix-zipper\OutputRoot"  (TaskId:11)
+  Attempting to build package from 'vsix-zipper.nuspec'. (TaskId:11)
+  Successfully created package 'C:\Data\personal\mycode\vsix-zipper\OutputRoot\VsixZipper.2.5.6-beta.nupkg'. (TaskId:11)
+Done executing task "Exec". (TaskId:11)
+Task "Copy" (TaskId:12)
+  Task Parameter:SourceFiles=C:\Data\personal\mycode\vsix-zipper\OutputRoot\VsixZipper.2.5.6-beta.nupkg (TaskId:12)
+  Task Parameter:DestinationFiles=C:\Temp\Nuget\LocalRepo\VsixZipper.2.5.6-beta.nupkg (TaskId:12)
+  Copying file from "C:\Data\personal\mycode\vsix-zipper\OutputRoot\VsixZipper.2.5.6-beta.nupkg" to "C:\Temp\Nuget\LocalRepo\VsixZipper.2.5.6-beta.nupkg". (TaskId:12)
+  Command: (TaskId:12)
+  copy /y "C:\Data\personal\mycode\vsix-zipper\OutputRoot\VsixZipper.2.5.6-beta.nupkg" "C:\Temp\Nuget\LocalRepo\VsixZipper.2.5.6-beta.nupkg" (TaskId:12)
+Done executing task "Copy". (TaskId:12)
+Done building target "CoreCreateNugetPackage" in project "build.proj".: (TargetId:4)
+Target "CreateNugetPackage: (TargetId:5)" in project "C:\Data\personal\mycode\vsix-zipper\build.proj" (entry point):
+Done building target "CreateNugetPackage" in project "build.proj".: (TargetId:5)
+Done Building Project "C:\Data\personal\mycode\vsix-zipper\build.proj" (default targets).
+
+
+Project Performance Summary:
+      588 ms  C:\Data\personal\mycode\vsix-zipper\build.proj   1 calls
+
+Target Performance Summary:
+        0 ms  CreateNugetPackage                         1 calls
+       65 ms  PrepareAndPopulateNugetFolder              1 calls
+       69 ms  CleanAndInitalize                          1 calls
+      443 ms  CoreCreateNugetPackage                     1 calls
+
+Task Performance Summary:
+        3 ms  MakeDir                                    2 calls
+        3 ms  Message                                    1 calls
+       50 ms  Delete                                     2 calls
+       61 ms  Copy                                       5 calls
+      428 ms  Exec                                       1 calls
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:00.61

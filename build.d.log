@@ -1,0 +1,107 @@
+Build started 6/6/2013 6:58:58 PM.
+Project "C:\Data\personal\mycode\vsix-zipper\build.proj" on node 1 (default targets).
+Building with tools version "2.0".
+Target "CleanAndInitalize" in project "C:\Data\personal\mycode\vsix-zipper\build.proj" (target "CreateNugetPackage" depends on it):
+Using "MakeDir" task from assembly "Microsoft.Build.Tasks, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+Task "MakeDir"
+  Task Parameter:Directories=C:\Data\personal\mycode\vsix-zipper\OutputRoot\
+Done executing task "MakeDir".
+Task "MakeDir"
+  Task Parameter:Directories=C:\Data\personal\mycode\vsix-zipper\OutputRoot\Nugetpkg\
+Done executing task "MakeDir".
+Using "Delete" task from assembly "Microsoft.Build.Tasks, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+Task "Delete"
+  Task Parameter:
+      Files=
+          C:\Data\personal\mycode\vsix-zipper\OutputRoot\Nugetpkg\content\vsiz-zipper.txt
+          C:\Data\personal\mycode\vsix-zipper\OutputRoot\Nugetpkg\tools\Install.ps1
+          C:\Data\personal\mycode\vsix-zipper\OutputRoot\Nugetpkg\tools\vsix-zipper.targets
+          C:\Data\personal\mycode\vsix-zipper\OutputRoot\Nugetpkg\vsix-zipper.nuspec
+          C:\Data\personal\mycode\vsix-zipper\OutputRoot\VsixZipper.2.5.6-beta.nupkg
+  Deleting file "C:\Data\personal\mycode\vsix-zipper\OutputRoot\Nugetpkg\content\vsiz-zipper.txt".
+  Command:
+  del "C:\Data\personal\mycode\vsix-zipper\OutputRoot\Nugetpkg\content\vsiz-zipper.txt"
+  Deleting file "C:\Data\personal\mycode\vsix-zipper\OutputRoot\Nugetpkg\tools\Install.ps1".
+  Command:
+  del "C:\Data\personal\mycode\vsix-zipper\OutputRoot\Nugetpkg\tools\Install.ps1"
+  Deleting file "C:\Data\personal\mycode\vsix-zipper\OutputRoot\Nugetpkg\tools\vsix-zipper.targets".
+  Command:
+  del "C:\Data\personal\mycode\vsix-zipper\OutputRoot\Nugetpkg\tools\vsix-zipper.targets"
+  Deleting file "C:\Data\personal\mycode\vsix-zipper\OutputRoot\Nugetpkg\vsix-zipper.nuspec".
+  Command:
+  del "C:\Data\personal\mycode\vsix-zipper\OutputRoot\Nugetpkg\vsix-zipper.nuspec"
+  Deleting file "C:\Data\personal\mycode\vsix-zipper\OutputRoot\VsixZipper.2.5.6-beta.nupkg".
+  Command:
+  del "C:\Data\personal\mycode\vsix-zipper\OutputRoot\VsixZipper.2.5.6-beta.nupkg"
+Done executing task "Delete".
+Task "Delete"
+Done executing task "Delete".
+Done building target "CleanAndInitalize" in project "build.proj".
+Target "PrepareAndPopulateNugetFolder" in project "C:\Data\personal\mycode\vsix-zipper\build.proj" (target "CreateNugetPackage" depends on it):
+Using "Copy" task from assembly "Microsoft.Build.Tasks, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+Task "Copy"
+  Task Parameter:SourceFiles=C:\Data\personal\mycode\vsix-zipper\vsix-zipper.nuspec
+  Task Parameter:DestinationFiles=C:\Data\personal\mycode\vsix-zipper\OutputRoot\Nugetpkg\vsix-zipper.nuspec
+  Copying file from "C:\Data\personal\mycode\vsix-zipper\vsix-zipper.nuspec" to "C:\Data\personal\mycode\vsix-zipper\OutputRoot\Nugetpkg\vsix-zipper.nuspec".
+  Command:
+  copy /y "C:\Data\personal\mycode\vsix-zipper\vsix-zipper.nuspec" "C:\Data\personal\mycode\vsix-zipper\OutputRoot\Nugetpkg\vsix-zipper.nuspec"
+Done executing task "Copy".
+Task "Copy"
+  Task Parameter:
+      SourceFiles=
+          C:\Data\personal\mycode\vsix-zipper\tools\Install.ps1
+          C:\Data\personal\mycode\vsix-zipper\tools\vsix-zipper.targets
+  Task Parameter:
+      DestinationFiles=
+          C:\Data\personal\mycode\vsix-zipper\OutputRoot\Nugetpkg\tools\Install.ps1
+          C:\Data\personal\mycode\vsix-zipper\OutputRoot\Nugetpkg\tools\vsix-zipper.targets
+  Copying file from "C:\Data\personal\mycode\vsix-zipper\tools\Install.ps1" to "C:\Data\personal\mycode\vsix-zipper\OutputRoot\Nugetpkg\tools\Install.ps1".
+  Command:
+  copy /y "C:\Data\personal\mycode\vsix-zipper\tools\Install.ps1" "C:\Data\personal\mycode\vsix-zipper\OutputRoot\Nugetpkg\tools\Install.ps1"
+  Copying file from "C:\Data\personal\mycode\vsix-zipper\tools\vsix-zipper.targets" to "C:\Data\personal\mycode\vsix-zipper\OutputRoot\Nugetpkg\tools\vsix-zipper.targets".
+  Command:
+  copy /y "C:\Data\personal\mycode\vsix-zipper\tools\vsix-zipper.targets" "C:\Data\personal\mycode\vsix-zipper\OutputRoot\Nugetpkg\tools\vsix-zipper.targets"
+Done executing task "Copy".
+Task "Copy"
+  Task Parameter:SourceFiles=C:\Data\personal\mycode\vsix-zipper\content\vsiz-zipper.txt
+  Task Parameter:DestinationFiles=C:\Data\personal\mycode\vsix-zipper\OutputRoot\Nugetpkg\content\vsiz-zipper.txt
+  Copying file from "C:\Data\personal\mycode\vsix-zipper\content\vsiz-zipper.txt" to "C:\Data\personal\mycode\vsix-zipper\OutputRoot\Nugetpkg\content\vsiz-zipper.txt".
+  Command:
+  copy /y "C:\Data\personal\mycode\vsix-zipper\content\vsiz-zipper.txt" "C:\Data\personal\mycode\vsix-zipper\OutputRoot\Nugetpkg\content\vsiz-zipper.txt"
+Done executing task "Copy".
+Task "Copy"
+Done executing task "Copy".
+Done building target "PrepareAndPopulateNugetFolder" in project "build.proj".
+Target "CoreCreateNugetPackage" in project "C:\Data\personal\mycode\vsix-zipper\build.proj" (target "CreateNugetPackage" depends on it):
+Using "Message" task from assembly "Microsoft.Build.Tasks, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+Task "Message"
+  Task Parameter:Text=_Cmd: "C:\Data\personal\mycode\vsix-zipper\.nuget\NuGet.exe" pack "C:\Data\personal\mycode\vsix-zipper\OutputRoot\Nugetpkg\vsix-zipper.nuspec" -NoPackageAnalysis -OutputDirectory "C:\Data\personal\mycode\vsix-zipper\OutputRoot" 
+  Task Parameter:Importance=low
+  _Cmd: "C:\Data\personal\mycode\vsix-zipper\.nuget\NuGet.exe" pack "C:\Data\personal\mycode\vsix-zipper\OutputRoot\Nugetpkg\vsix-zipper.nuspec" -NoPackageAnalysis -OutputDirectory "C:\Data\personal\mycode\vsix-zipper\OutputRoot" 
+Done executing task "Message".
+Using "Exec" task from assembly "Microsoft.Build.Tasks, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+Task "Exec"
+  Task Parameter:Command="C:\Data\personal\mycode\vsix-zipper\.nuget\NuGet.exe" pack "C:\Data\personal\mycode\vsix-zipper\OutputRoot\Nugetpkg\vsix-zipper.nuspec" -NoPackageAnalysis -OutputDirectory "C:\Data\personal\mycode\vsix-zipper\OutputRoot" 
+  Command:
+  "C:\Data\personal\mycode\vsix-zipper\.nuget\NuGet.exe" pack "C:\Data\personal\mycode\vsix-zipper\OutputRoot\Nugetpkg\vsix-zipper.nuspec" -NoPackageAnalysis -OutputDirectory "C:\Data\personal\mycode\vsix-zipper\OutputRoot" 
+  Attempting to build package from 'vsix-zipper.nuspec'.
+  Successfully created package 'C:\Data\personal\mycode\vsix-zipper\OutputRoot\VsixZipper.2.5.6-beta.nupkg'.
+Done executing task "Exec".
+Task "Copy"
+  Task Parameter:SourceFiles=C:\Data\personal\mycode\vsix-zipper\OutputRoot\VsixZipper.2.5.6-beta.nupkg
+  Task Parameter:DestinationFiles=C:\Temp\Nuget\LocalRepo\VsixZipper.2.5.6-beta.nupkg
+  Copying file from "C:\Data\personal\mycode\vsix-zipper\OutputRoot\VsixZipper.2.5.6-beta.nupkg" to "C:\Temp\Nuget\LocalRepo\VsixZipper.2.5.6-beta.nupkg".
+  Command:
+  copy /y "C:\Data\personal\mycode\vsix-zipper\OutputRoot\VsixZipper.2.5.6-beta.nupkg" "C:\Temp\Nuget\LocalRepo\VsixZipper.2.5.6-beta.nupkg"
+Done executing task "Copy".
+Done building target "CoreCreateNugetPackage" in project "build.proj".
+Target "CreateNugetPackage" in project "C:\Data\personal\mycode\vsix-zipper\build.proj" (entry point):
+Done building target "CreateNugetPackage" in project "build.proj".
+Done Building Project "C:\Data\personal\mycode\vsix-zipper\build.proj" (default targets).
+
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:00.61

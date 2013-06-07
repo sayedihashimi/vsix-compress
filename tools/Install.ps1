@@ -1,8 +1,11 @@
 param($rootPath, $toolsPath, $package, $project)
 
 "Installing vsix-zipper to project [{0}]" -f $project.FullName | Write-Host
+"Installing VSIX ZIPPER (output)" | Write-Output
+"Installing VSIX ZIPPER (host)" | Write-Host
 
-$scLabel = "SlowCheetah"
+$importLabel = "VsixZipper"
+$targetsPropertyName = "VsixZipperTargets"
 
 # When this package is installed we need to add a property
 # to the current project, SlowCheetahTargets, which points to the
@@ -41,8 +44,8 @@ function EnsureProjectFileIsWriteable(){
 }
 
 function ComputeRelativePathToTargetsFile(){
-    param($startPath,$targetPath)
-    
+    param($startPath,$targetPath)   
+
     # we need to compute the relative path
     $startLocation = Get-Location
 
@@ -117,38 +120,42 @@ function AddImportElementIfNotExists(){
             $importStr = ""
         }
 
-        if([string]::Compare('$(SlowCheetahTargets)',$importStr.Trim(),$true) -eq 0){
-            if(!$foundImport){
-               # if it doesn't have a label then add one
-                if([string]::IsNullOrWhiteSpace($import.Label)){
-                    $import.Label = $importLabel
-                }
-                $import.Condition="Exists('`$(SlowCheetahTargets)')"
-
-                $foundImport = $true
-            }
-            else{
-                # if we already found an import, this must be a duplicate remove it
-                $importsToRemove+=$import
-            }
+        $currentLabel = $import.Label
+        if(!$currentLabel){
+            $currentLabel = ""
         }
-    }
-    
-    foreach($import in $importsToRemove){        
-        # $projectRootElement.Imports.Remove($import)
-        # you have to use Microsoft.Build.Evaluation.ProjectCollection to remove, so disabling should be good enough
-        $import.Condition='false'
+
+        if([string]::Compare($importLabel,$currentLabel.Trim(),$true) -eq 0){
+            # found the import no need to continue
+            $foundImport = true
+            break
+        }
+
+        #if([string]::Compare("`$($targetsPropertyName)",$importStr.Trim(),$true) -eq 0){
+        #    if(!$foundImport){
+        #       # if it doesn't have a label then add one
+        #        if([string]::IsNullOrWhiteSpace($import.Label)){
+        #            $import.Label = $importLabel
+        #        }
+        #        $import.Condition="Exists('`$($targetsPropertyName)')"
+        #
+        #        $foundImport = $true
+        #    }
+        #    else{
+        #        # if we already found an import, this must be a duplicate remove it
+        #        $importsToRemove+=$import
+        #    }
+        #}
     }
 
     if(!$foundImport){
         # the import is not in the project, add it
-        # <Import Project="$(SlowCheetahTargets)" Condition="Exists('$(SlowCheetahTargets)')" Label="SlowCheetah" />
-        $importToAdd = $projectRootElement.AddImport('$(SlowCheetahTargets)');
-        $importToAdd.Condition = "Exists('`$(SlowCheetahTargets)')"
+        # <Import Project="$(VsixZipperImport)" Condition="Exists('$(VsizZipperTargets)')" Label="VsixZipper" />
+        $importToAdd = $projectRootElement.AddImport("`$($targetsPropertyName)");
+        $importToAdd.Condition = "Exists('`$($targetsPropertyName)')"
         $importToAdd.Label = $importLabel 
     }        
 }
-
 
 
 #########################
@@ -178,10 +185,8 @@ $DTE.ExecuteCommand("File.SaveAll")
 CheckoutProjFileIfUnderScc
 EnsureProjectFileIsWriteable
 
-
-
 # Update the Project file to import the .targets file
-$relPathToTargets = ComputeRelativePathToTargetsFile -startPath ($projItem = Get-Item $project.FullName) -targetPath (Get-Item ("{0}\tools\SlowCheetah.Transforms.targets" -f $rootPath))
+$relPathToTargets = ComputeRelativePathToTargetsFile -startPath ($projItem = Get-Item $project.FullName) -targetPath (Get-Item ("{0}\tools\vsix-zipper.targets" -f $rootPath))
 
 $projectMSBuild = [Microsoft.Build.Construction.ProjectRootElement]::Open($projFile)
 
@@ -189,34 +194,34 @@ RemoveExistingSlowCheetahPropertyGroups -projectRootElement $projectMSBuild
 $propertyGroup = $projectMSBuild.AddPropertyGroup()
 $propertyGroup.Label = $importLabel
 
-$propEnableNuGetImport = $propertyGroup.AddProperty('SlowCheetah_EnableImportFromNuGet', 'true');
-$propEnableNuGetImport.Condition = ' ''$(SC_EnableImportFromNuGet)''=='''' ';
+#$propEnableNuGetImport = $propertyGroup.AddProperty('SlowCheetah_EnableImportFromNuGet', 'true');
+#$propEnableNuGetImport.Condition = ' ''$(SC_EnableImportFromNuGet)''=='''' ';
 
 $importStmt = ('$([System.IO.Path]::GetFullPath( $(MSBuildProjectDirectory)\{0} ))' -f $relPathToTargets)
-$propNuGetImportPath = $propertyGroup.AddProperty('SlowCheetah_NuGetImportPath', "$importStmt");
-$propNuGetImportPath.Condition = ' ''$(SlowCheetah_NuGetImportPath)''=='''' ';
+$propNuGetImportPath = $propertyGroup.AddProperty('VsixZipperTargets', "$importStmt");
+$propNuGetImportPath.Condition = ' ''$(VsixZipperTargets)''=='''' ';
 
-$propImport = $propertyGroup.AddProperty('SlowCheetahTargets', '$(SlowCheetah_NuGetImportPath)');
-$propImport.Condition = ' ''$(SlowCheetah_EnableImportFromNuGet)''==''true'' and Exists(''$(SlowCheetah_NuGetImportPath)'') ';
+#$propImport = $propertyGroup.AddProperty('SlowCheetahTargets', '$(SlowCheetah_NuGetImportPath)');
+#$propImport.Condition = ' ''$(SlowCheetah_EnableImportFromNuGet)''==''true'' and Exists(''$(SlowCheetah_NuGetImportPath)'') ';
 
 AddImportElementIfNotExists -projectRootElement $projectMSBuild
 
 $projectMSBuild.Save()
 
 # now update the packageRestore.proj file with the correct path for SolutionDir
-$solnDirFromProj = GetSolutionDirFromProj -msbuildProject $projectMSBuild
-if($solnDirFromProj) {
-    $pkgRestorePath = (Join-Path (get-item $project.FullName).Directory 'packageRestore.proj')
-    UpdatePackageRestoreSolutionDir -pkgRestorePath $pkgRestorePath -solDirValue $solnDirFromProj
-}
-else{
-    $msg = @"
-    SolutionDir property not found in project [{0}].
-    Have you enabled NuGet Package Restore? This is required for build server support.
-    You may need to enable it and to enable it and re-install this package
-"@ 
-    $msg -f $project.Name | Write-Host -ForegroundColor Red
-}
+# $solnDirFromProj = GetSolutionDirFromProj -msbuildProject $projectMSBuild
+# if($solnDirFromProj) {
+#    $pkgRestorePath = (Join-Path (get-item $project.FullName).Directory 'packageRestore.proj')
+#    UpdatePackageRestoreSolutionDir -pkgRestorePath $pkgRestorePath -solDirValue $solnDirFromProj
+#}
+#else{
+#    $msg = @"
+#    SolutionDir property not found in project [{0}].
+#    Have you enabled NuGet Package Restore? This is required for build server support.
+#    You may need to enable it and to enable it and re-install this package
+#"@ 
+#    $msg -f $project.Name | Write-Host -ForegroundColor Red
+#}
 
-"    SlowCheetah has been installed into project [{0}]" -f $project.FullName| Write-Host -ForegroundColor DarkGreen
-"    `nFor more info how to enable SlowCheetah on build servers see http://sedodream.com/2012/12/24/SlowCheetahBuildServerSupportUpdated.aspx" | Write-Host -ForegroundColor DarkGreen
+"    VsixZipperh has been installed into project [{0}]" -f $project.FullName| Write-Host -ForegroundColor DarkGreen
+"    `nFor more info how to enable VsixZipper on build servers see http://sedodream.com/2012/12/24/SlowCheetahBuildServerSupportUpdated.aspx" | Write-Host -ForegroundColor DarkGreen

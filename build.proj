@@ -27,10 +27,12 @@
   
   <ItemGroup>
     <!-- This item should never have more than 1 value -->
-    <_NugetSpecFile Include="$(SourceRoot)packagerestore.nuspec" />
+    <_NugetSpecFile Include="$(SourceRoot)vsix-zipper.nuspec" />
     <ToolsItems Include="$(SourceRoot)tools\Install.ps1" />
 
-    <ContentItems Include="$(SourceRoot)content\packageRestore.proj" />
+    <ToolsItems Include="$(SourceRoot)tools\vsix-zipper.targets" />
+
+    <ContentItems Include="$(SourceRoot)content\vsiz-zipper.txt" />
     <!--<ToolsItems Include="" />-->
     <!--<ContentItems Include="$(PublishPs1)">
       <DestDir>$(PackageDirectory)\</DestDir>
@@ -48,22 +50,12 @@
     <LibItems Include="$(OutputRoot)SlowCheetah.Xdt.dll" />-->
   </ItemGroup>
 
-  <!--<ItemGroup>
-    <ProjectsToBuild Include="$(SourceRoot)SlowCheetah.Xdt\SlowCheetah.Xdt.csproj"/>
-  </ItemGroup>-->
-  
   <PropertyGroup>
     <CreateNugetPackageDependsOn>
       CleanAndInitalize;
       PrepareAndPopulateNugetFolder;
       CoreCreateNugetPackage;
     </CreateNugetPackageDependsOn>
-    <!--<BuildProjectsDependsOn>
-      $(BuildProjectsDependsOn);
-      CleanAndInitalize;
-      CoreBuildProjects;
-      CopyOutputToDevFolder;
-    </BuildProjectsDependsOn>-->
   </PropertyGroup>
   <Target Name="CreateNugetPackage" DependsOnTargets="$(CreateNugetPackageDependsOn)" />
 
