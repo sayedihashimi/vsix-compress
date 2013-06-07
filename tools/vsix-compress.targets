@@ -3,7 +3,7 @@
   <PropertyGroup>
     <VCompress_TempFolder Condition=" '$(VZ_ExtractIntermediatePath)'=='' ">$(IntermediateOutputPath)VCompress</VCompress_TempFolder>
     <VCompress_MSBuildLibPath Condition=" '$(VCompress_MSBuildLibPath)'=='' ">$(MSBuildThisFileDirectory)</VCompress_MSBuildLibPath>
-    <VCompress_MSBuildLibPathLocal Condition=" '$(VCompress_MSBuildLibPathLocal)'=='' ">$(LocalAppData)\Microsoft\MSBuild\VsixCompressor\v1\</VCompress_MSBuildLibPathLocal>
+    <VCompress_MSBuildLibPathLocal Condition=" '$(VCompress_MSBuildLibPathLocal)'=='' ">$(LocalAppData)\Microsoft\MSBuild\VsixCompress\v1\</VCompress_MSBuildLibPathLocal>
   </PropertyGroup>
   
   <ItemDefinitionGroup>

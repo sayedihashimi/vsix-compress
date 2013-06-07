@@ -1,9 +1,5 @@
 param($rootPath, $toolsPath, $package, $project)
 
-"Installing vsix-zipper to project [{0}]" -f $project.FullName | Write-Host
-"Installing VSIX ZIPPER (output)" | Write-Output
-"Installing VSIX ZIPPER (host)" | Write-Host
-
 $importLabel = "VsixZipper"
 $targetsPropertyName = "VsixZipperTargets"
 
@@ -186,7 +182,7 @@ CheckoutProjFileIfUnderScc
 EnsureProjectFileIsWriteable
 
 # Update the Project file to import the .targets file
-$relPathToTargets = ComputeRelativePathToTargetsFile -startPath ($projItem = Get-Item $project.FullName) -targetPath (Get-Item ("{0}\tools\vsix-zipper.targets" -f $rootPath))
+$relPathToTargets = ComputeRelativePathToTargetsFile -startPath ($projItem = Get-Item $project.FullName) -targetPath (Get-Item ("{0}\tools\vsix-compress.targets" -f $rootPath))
 
 $projectMSBuild = [Microsoft.Build.Construction.ProjectRootElement]::Open($projFile)
 

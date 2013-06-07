@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{3945DC15-37CF-4E4D-AFBB-6CFF1D4C3A0E}"
 	ProjectSection(SolutionItems) = preProject
-		vsix-zipper.nuspec = vsix-zipper.nuspec
+		vsix-compress.nuspec = vsix-compress.nuspec
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{23E454C1-69E1-4882-AC92-6D03F8EE1D56}"
@@ -28,7 +28,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{893CEDE0
 		tools\Install.ps1 = tools\Install.ps1
 		tools\Ionic.Zip.DLL = tools\Ionic.Zip.DLL
 		tools\MSBuild.ExtensionPack.dll = tools\MSBuild.ExtensionPack.dll
-		tools\vsix-zipper.targets = tools\vsix-zipper.targets
+		tools\vsix-compress.targets = tools\vsix-compress.targets
 	EndProjectSection
 EndProject
 Global

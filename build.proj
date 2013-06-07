@@ -27,7 +27,7 @@
   
   <ItemGroup>
     <!-- This item should never have more than 1 value -->
-    <_NugetSpecFile Include="$(SourceRoot)vsix-zipper.nuspec" />
+    <_NugetSpecFile Include="$(SourceRoot)vsix-compress.nuspec" />
     <ToolsItems Include="$(SourceRoot)tools\**\*" />
     
     <ContentItems Include="$(SourceRoot)content\vsiz-zipper.txt" />
