@@ -25,7 +25,9 @@
           Outputs="@(VCompress_SourceMSBuildAssemblies->'$(VCompress_MSBuildLibPathLocal)%(FileName)%(Extension)')">
     <MakeDir Directories="$(VCompress_MSBuildLibPathLocal)"/>
     <Copy SourceFiles="@(VCompress_SourceMSBuildAssemblies)"
-          DestinationFiles="@(VCompress_SourceMSBuildAssemblies->'$(VCompress_MSBuildLibPathLocal)%(FileName)%(Extension)')"/>
+          DestinationFiles="@(VCompress_SourceMSBuildAssemblies->'$(VCompress_MSBuildLibPathLocal)%(FileName)%(Extension)')"
+          Condition="!Exists('$(VCompress_MSBuildLibPathLocal)%(VCompress_SourceMSBuildAssemblies.FileName)%(VCompress_SourceMSBuildAssemblies.Extension)')"
+          />
   </Target>
   
   <UsingTask AssemblyFile="$(VCompress_MSBuildLibPathLocal)MSBuild.ExtensionPack.dll" TaskName="MSBuild.ExtensionPack.Compression.Zip" />

@@ -29,8 +29,10 @@
     <!-- This item should never have more than 1 value -->
     <_NugetSpecFile Include="$(SourceRoot)vsix-compress.nuspec" />
     <ToolsItems Include="$(SourceRoot)tools\**\*" />
-    
-    <ContentItems Include="$(SourceRoot)content\**\*" />
+
+    <ContentItems Include="$(SourceRoot)content\**\*">
+      <DestDir>%(RecursiveDir)</DestDir>
+    </ContentItems>
     <!--<ToolsItems Include="" />-->
     <!--<ContentItems Include="$(PublishPs1)">
       <DestDir>$(PackageDirectory)\</DestDir>
