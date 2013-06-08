@@ -2,11 +2,11 @@
 <package >
   <metadata>
     <id>VsixCompress</id>
-    <version>1.0.0.3</version>
+    <version>1.0.0.4</version>
     <authors>Sayed Ibrahim Hashimi</authors>
     <owners>Sayed Ibrahim Hashimi</owners>
     <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
-    <projectUrl>https://nuget.org/packages/VzixCompress/</projectUrl>
+    <projectUrl>https://github.com/sayedihashimi/vsix-compress/</projectUrl>
     <iconUrl>http://msbuildbook.com/images/vsix-compress.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>You can use this NuGet package to install the SlowCheetah MSBuild targets/tasks into your solution. This can be useful for command line build scenarios as well as cases where not all your team members have installed the SlowCheetah add in.
