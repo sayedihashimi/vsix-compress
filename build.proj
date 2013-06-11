@@ -2,7 +2,7 @@
 
   <!-- 
   You can use this scrip to:
-    1. Create the SlowCheetah.Xdt NuGet package
+    1. Create the NuGet package
     
     #1: msbuild.exe build.proj
   -->
@@ -33,21 +33,6 @@
     <ContentItems Include="$(SourceRoot)content\**\*">
       <DestDir>%(RecursiveDir)</DestDir>
     </ContentItems>
-    <!--<ToolsItems Include="" />-->
-    <!--<ContentItems Include="$(PublishPs1)">
-      <DestDir>$(PackageDirectory)\</DestDir>
-    </ContentItems>
-    <ContentItems Include="$(SourceRoot)Nuget\Sedodream.Package.targets">
-      <DestDir>$(PackageDirectory)\</DestDir>
-    </ContentItems>
-    <ContentItems Include="$(SourceRoot)Sedodream.Publish.proj">
-      <DestDir>$(PackageDirectory)\</DestDir>
-    </ContentItems>
-    <ContentItems Include="$(SourceRoot)Lib\SlowCheetah.Tasks.dll">
-      <DestDir>$(PackageDirectory)\</DestDir>
-    </ContentItems>-->
-    <!--<LibItems Include="$(OutputRoot)Microsoft.Web.XmlTransform.dll" />
-    <LibItems Include="$(OutputRoot)SlowCheetah.Xdt.dll" />-->
   </ItemGroup>
 
   <PropertyGroup>
@@ -60,7 +45,7 @@
   <Target Name="CreateNugetPackage" DependsOnTargets="$(CreateNugetPackageDependsOn)" />
 
   <Target Name="CoreCreateNugetPackage">
-    <!-- nuget pack "C:\...\SlowCheetah.Xdt.nuspec" -NoPackageAnalysis -OutputDirectory "C:\...\Output\" -->
+    <!-- nuget pack "C:\...\<filename>.nuspec" -NoPackageAnalysis -OutputDirectory "C:\...\Output\" -->
     <PropertyGroup>
       <_NugetSpecFile>%(_NugetSpecOutputFile.FullPath)</_NugetSpecFile>
       <_Cmd>"$(NugetExe)" pack "$(_NugetSpecFile)" -NoPackageAnalysis -OutputDirectory "$(OutputRootNoTrailingSlash)" </_Cmd>

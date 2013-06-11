@@ -4,11 +4,11 @@ $importLabel = "VsixCompress"
 $targetsPropertyName = "VsixCompressTargets"
 
 # When this package is installed we need to add a property
-# to the current project, SlowCheetahTargets, which points to the
+# to the current project, which points to the
 # .targets file in the packages folder
 
-function RemoveExistingSlowCheetahPropertyGroups($projectRootElement){
-    # if there are any PropertyGroups with a label of "SlowCheetah" they will be removed here
+function RemoveExistingKnownPropertyGroups($projectRootElement){
+    # if there are any PropertyGroups with a label of "$importLabel" they will be removed here
     $pgsToRemove = @()
     foreach($pg in $projectRootElement.PropertyGroups){
         if($pg.Label -and [string]::Compare($importLabel,$pg.Label,$true) -eq 0) {
@@ -79,32 +79,6 @@ function GetSolutionDirFromProj{
     return $result
 }
 
-# we need to update the packageRestore.proj file to have the correct value for SolutionDir
-function UpdatePackageRestoreSolutionDir (){
-    param($pkgRestorePath, $solDirValue)
-    if(!(Test-Path $pkgRestorePath)){
-        throw ("pkgRestore file not found at {0}" -f $pkgRestorePath)
-    }
-
-    $solDirElement = $null
-    $root = [Microsoft.Build.Construction.ProjectRootElement]::Open($pkgRestorePath)
-    foreach($pg in $root.PropertyGroups){
-        foreach($prop in $pg.Properties){
-            if([string]::Compare("SlowCheetahSolutionDir",$prop.Label,$true) -eq 0){
-                $solDirElement = $prop
-                break
-            }
-        }
-    }
-    
-    if($solDirElement){
-        $solDirElement.Value = $solDirValue
-
-        $root.Save()
-
-    }
-}
-
 function AddImportElementIfNotExists(){
     param($projectRootElement)
 
@@ -126,22 +100,6 @@ function AddImportElementIfNotExists(){
             $foundImport = $true
             break
         }
-
-        #if([string]::Compare("`$($targetsPropertyName)",$importStr.Trim(),$true) -eq 0){
-        #    if(!$foundImport){
-        #       # if it doesn't have a label then add one
-        #        if([string]::IsNullOrWhiteSpace($import.Label)){
-        #            $import.Label = $importLabel
-        #        }
-        #        $import.Condition="Exists('`$($targetsPropertyName)')"
-        #
-        #        $foundImport = $true
-        #    }
-        #    else{
-        #        # if we already found an import, this must be a duplicate remove it
-        #        $importsToRemove+=$import
-        #    }
-        #}
     }
 
     if(!$foundImport){
@@ -168,14 +126,10 @@ if(!(Test-Path $projFile)){
 # use MSBuild to load the project and add the property
 
 # This is what we want to add to the project
-#  <PropertyGroup Label="SlowCheetah">
-#      <SlowCheetah_EnableImportFromNuGet Condition=" '$(SC_EnableImportFromNuGet)'=='' ">true</SlowCheetah_EnableImportFromNuGet>
-#      <SlowCheetah_NuGetImportPath Condition=" '$(SlowCheetah_NuGetImportPath)'=='' ">$([System.IO.Path]::GetFullPath( $(Filepath) ))</SlowCheetah_NuGetImportPath>
-#      <SlowCheetahTargets Condition=" '$(SlowCheetah_EnableImportFromNuGet)'=='true' and Exists('$(SlowCheetah_NuGetImportPath)') ">$(SlowCheetah_NuGetImportPath)</SlowCheetahTargets>
+#  <PropertyGroup Label="VsixCompress">
+#    <VsixCompressTargets Condition=" '$(VsixCompressTargets)'=='' ">$([System.IO.Path]::GetFullPath( $(MSBuildProjectDirectory)\..\packages\VsixCompress.1.0.0.6\tools\vsix-compress.targets ))</VsixCompressTargets>
 #  </PropertyGroup>
 
-
-# EnsureProjectFileIsWriteable
 # Before modifying the project save everything so that nothing is lost
 $DTE.ExecuteCommand("File.SaveAll")
 CheckoutProjFileIfUnderScc
@@ -186,38 +140,17 @@ $relPathToTargets = ComputeRelativePathToTargetsFile -startPath ($projItem = Get
 
 $projectMSBuild = [Microsoft.Build.Construction.ProjectRootElement]::Open($projFile)
 
-RemoveExistingSlowCheetahPropertyGroups -projectRootElement $projectMSBuild
+RemoveExistingKnownPropertyGroups -projectRootElement $projectMSBuild
 $propertyGroup = $projectMSBuild.AddPropertyGroup()
 $propertyGroup.Label = $importLabel
-
-#$propEnableNuGetImport = $propertyGroup.AddProperty('SlowCheetah_EnableImportFromNuGet', 'true');
-#$propEnableNuGetImport.Condition = ' ''$(SC_EnableImportFromNuGet)''=='''' ';
 
 $importStmt = ('$([System.IO.Path]::GetFullPath( $(MSBuildProjectDirectory)\{0} ))' -f $relPathToTargets)
 $propNuGetImportPath = $propertyGroup.AddProperty('VsixCompressTargets', "$importStmt");
 $propNuGetImportPath.Condition = ' ''$(VsixCompressTargets)''=='''' ';
 
-#$propImport = $propertyGroup.AddProperty('SlowCheetahTargets', '$(SlowCheetah_NuGetImportPath)');
-#$propImport.Condition = ' ''$(SlowCheetah_EnableImportFromNuGet)''==''true'' and Exists(''$(SlowCheetah_NuGetImportPath)'') ';
-
 AddImportElementIfNotExists -projectRootElement $projectMSBuild
 
 $projectMSBuild.Save()
 
-# now update the packageRestore.proj file with the correct path for SolutionDir
-# $solnDirFromProj = GetSolutionDirFromProj -msbuildProject $projectMSBuild
-# if($solnDirFromProj) {
-#    $pkgRestorePath = (Join-Path (get-item $project.FullName).Directory 'packageRestore.proj')
-#    UpdatePackageRestoreSolutionDir -pkgRestorePath $pkgRestorePath -solDirValue $solnDirFromProj
-#}
-#else{
-#    $msg = @"
-#    SolutionDir property not found in project [{0}].
-#    Have you enabled NuGet Package Restore? This is required for build server support.
-#    You may need to enable it and to enable it and re-install this package
-#"@ 
-#    $msg -f $project.Name | Write-Host -ForegroundColor Red
-#}
-
 "    VsixCompress has been installed into project [{0}]" -f $project.FullName| Write-Host -ForegroundColor DarkGreen
-"    `nFor more info how to enable VsixCompress on build servers see http://sedodream.com/2012/12/24/SlowCheetahBuildServerSupportUpdated.aspx" | Write-Host -ForegroundColor DarkGreen
+"    `nFor more info how to enable VsixCompress on build servers see http://sedodream.com/2013/06/06/HowToSimplifyShippingBuildUpdatesInANuGetPackage.aspx" | Write-Host -ForegroundColor DarkGreen

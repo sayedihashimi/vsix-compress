@@ -2,20 +2,27 @@
 <package >
   <metadata>
     <id>VsixCompress</id>
-    <version>1.0.0.5</version>
+    <version>1.0.0.7-beta</version>
     <authors>Sayed Ibrahim Hashimi</authors>
     <owners>Sayed Ibrahim Hashimi</owners>
     <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
     <projectUrl>https://github.com/sayedihashimi/vsix-compress/</projectUrl>
     <iconUrl>http://msbuildbook.com/images/vsix-compress.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>You can use this NuGet package to install the SlowCheetah MSBuild targets/tasks into your solution. This can be useful for command line build scenarios as well as cases where not all your team members have installed the SlowCheetah add in.
+    <description>
+      After adding this NuGet package to your Visual Studio Package project the build process will be updated
+      and the .vsix file created will be compressed. The % of compression varies from project to project, but its common
+      to see results from 40-70%. By having a smaller .vsix file when users downloads your extension it will be
+      much quicker.
 
-    For detailed info on how to use this for Build Servers see http://sedodream.com/2012/12/24/SlowCheetahBuildServerSupportUpdated.aspx.
+      For more info on VsixCompress take a look at http://sedodream.com/2013/06/08/IntroducingVsixCompressaNuGetPackageToCompressYourVisualStudioPackage.aspx.
+
+      If you need to be able to execute this from a build (CI) server then you should read
+      this post http://sedodream.com/2013/06/06/HowToSimplifyShippingBuildUpdatesInANuGetPackage.aspx.
     </description>
     <!-- <releaseNotes></releaseNotes> -->
     <copyright>Copyright 2012-2013 Sayed Ibrahim Hashimi</copyright>
-    <tags>SlowCheetah slow cheetah XML Transform XDT web.config</tags>
+    <tags>VsixCompress VSIX Compress VisualStudio Visual Studio Package Zip MSBuild</tags>
     <!--<dependencies>
       <dependency id="SampleDependency" version="1.0" />
     </dependencies>-->
