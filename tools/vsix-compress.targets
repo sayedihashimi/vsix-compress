@@ -72,7 +72,7 @@
       TaskAction="Create"
       CompressFiles="@(_AppFilesToZip)"
       ZipFileName="$(_TempVsixFilePath)"
-      RemoveRoot="$(VCompress_TempFolder)extracted"
+      RemoveRoot="$(VCompress_TempFolder)\extracted"
       CompressionLevel="BestCompression" />
 
     <Message Text="Copying recompressed .vsix to output folder"/>
