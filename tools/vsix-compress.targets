@@ -1,5 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildProjectDirectory)\Properties\vsix-compress.props" 
+          Condition="Exists('$(MSBuildProjectDirectory)\Properties\vsix-compress.props')" />
+  
   <PropertyGroup>
     <VCompress_TempFolder Condition=" '$(VZ_ExtractIntermediatePath)'=='' ">$(IntermediateOutputPath)VCompress\</VCompress_TempFolder>
     <VCompress_MSBuildLibPath Condition=" '$(VCompress_MSBuildLibPath)'=='' ">$(MSBuildThisFileDirectory)</VCompress_MSBuildLibPath>
@@ -57,17 +60,35 @@
       ExtractPath="$(VCompress_TempFolder)extracted\" 
       ZipFileName="@(_CreatedVsixContainer)"/>    
   </Target>
-  <Target Name="CoreRecompressVsix">
+  <PropertyGroup>
+    <CoreRecompressVsixDependsOn>
+      $(CoreRecompressVsixDependsOn);
+      GetVsixDeploymentPath;
+    </CoreRecompressVsixDependsOn>
+  </PropertyGroup>
+  <Target Name="CoreRecompressVsix" DependsOnTargets="$(CoreRecompressVsixDependsOn)">
     <ItemGroup>
       <__AppFilesToZip Remove="@(__AppFilesToZip)"/>
       <_AppFilesToZip Include="$(VCompress_TempFolder)extracted\**\*"/>
+      <_TargetVsixContainerItem Include="$(TargetVsixContainer)"/>
     </ItemGroup>
     
     <PropertyGroup>
-      <_TempVsixFilePath>$(VCompress_TempFolder)$(TargetVsixContainerName)</_TempVsixFilePath>
+      <_TempVsixFilePath>$(VCompress_TempFolder)$(TargetVsixContainerName)</_TempVsixFilePath>      
+
+      <FinalOutputPath>$(TargetVsixContainer)</FinalOutputPath>
+      <FinalOutputPath Condition="'$(VC_IncludeVersionInOutput)'=='true'">@(_TargetVsixContainerItem->'%(RelativeDir)%(FileName)-v$(VsixVersion)%(Extension)')</FinalOutputPath>
     </PropertyGroup>
 
     <Message Text="Creating new .vsix at [$(_TempVsixFilePath)]" />
+    <Message Text="_TempVsixFilePath: [$(_TempVsixFilePath)]" Importance="low" />
+    <Message Text=" VsixVersion: [$(VsixVersion)]" Importance="low"/>
+    <Message Text="VC_IncludeVersionInOutput: [$(VC_IncludeVersionInOutput)]" Importance="low"/>
+    <Message Text="TargetVsixContainer: [$(TargetVsixContainer)]" Importance="low"/>
+    <Message Text="FinalOutputPath: [$(FinalOutputPath)]" Importance="low"/>
+
+    <!-- Delete the file because we may write it out with the version number in the file name -->
+    <Delete Files="$(TargetVsixContainer)" />
     
     <MSBuild.ExtensionPack.Compression.Zip
       TaskAction="Create"
@@ -78,7 +99,7 @@
 
     <Message Text="Copying recompressed .vsix to output folder"/>
     <Copy SourceFiles="$(_TempVsixFilePath)"
-          DestinationFiles="$(TargetVsixContainer)"/>
+          DestinationFiles="$(FinalOutputPath)"/>
   </Target>
   
   <Target Name="CleanVCompressTempFolder">
