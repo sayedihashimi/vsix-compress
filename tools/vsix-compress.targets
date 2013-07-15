@@ -77,7 +77,7 @@
       <_TempVsixFilePath>$(VCompress_TempFolder)$(TargetVsixContainerName)</_TempVsixFilePath>      
 
       <FinalOutputPath>$(TargetVsixContainer)</FinalOutputPath>
-      <FinalOutputPath Condition="'$(VC_IncludeVersionInOutput)'=='true'">@(_TargetVsixContainerItem->'%(RelativeDir)%(FileName)-v$(VsixVersion)%(Extension)')</FinalOutputPath>
+      <FinalOutputPath Condition="'$(VC_IncludeVersionInOutput)'=='true'">@(_TargetVsixContainerItem->'%(RelativeDir)%(FileName)-$(VsixVersion)%(Extension)')</FinalOutputPath>
     </PropertyGroup>
 
     <Message Text="Creating new .vsix at [$(_TempVsixFilePath)]" />
