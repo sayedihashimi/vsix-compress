@@ -99,9 +99,11 @@
 
     <Message Text="Copying recompressed .vsix to output folder"/>
     <Copy SourceFiles="$(_TempVsixFilePath)"
-          DestinationFiles="$(FinalOutputPath)"/>
+          DestinationFiles="$(FinalOutputPath)">
+      <Output TaskParameter="DestinationFiles" ItemName="FileWrites"/>
+    </Copy>
   </Target>
-  
+
   <Target Name="CleanVCompressTempFolder">
     <Message Text="CleanVCompressTempFolder" />
     <!-- delete the entire VS_TempFolder -->
